@@ -39,16 +39,16 @@ public class InsuranceTest {
         fillField(By.id("surname_vzr_ins_0"), "Иванов");
         fillField(By.id("name_vzr_ins_0"), "Иван");
         fillField(By.id("birthDate_vzr_ins_0"), "01.01.1970");
-//        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("person_lastName"))));
+        driver.findElement(By.xpath("//legend[contains(text(),'Страхователь')]")).click();
         fillField(By.id("person_lastName"), "Петров");
         fillField(By.id("person_firstName"), "Петр");
         fillField(By.id("person_middleName"), "Петрович");
         fillField(By.id("person_birthDate"), "01.01.1990");
-//        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("passportSeries"))));
+        driver.findElement(By.xpath("//legend[contains(text(),'Паспортные данные')]")).click();
         fillField(By.id("passportSeries"), "1234");
         fillField(By.id("passportNumber"), "654321");
         fillField(By.id("documentDate"), "01.02.2010");
-//        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("documentIssue"))));
+        driver.findElement(By.xpath("//legend[contains(text(),'Паспортные данные')]")).click();
         fillField(By.id("documentIssue"), "test");
 
 
