@@ -5,15 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import steps.BaseSteps;
 
 public class InsuranceSectionPage extends BaseMethods{
 
     @FindBy(id="main-page")
     WebElement insurance;
 
-    public InsuranceSectionPage(WebDriver driver){
-        PageFactory.initElements(driver,this);
-        this.driver=driver;
+    public InsuranceSectionPage(){
+        PageFactory.initElements(BaseSteps.getDriver(),this);
+        this.driver= BaseSteps.getDriver();
     }
 
     public void selectSection(String name){

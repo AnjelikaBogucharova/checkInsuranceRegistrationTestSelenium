@@ -3,6 +3,9 @@ package pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
 import org.openqa.selenium.support.ui.*;
+import steps.BaseSteps;
+
+
 import static org.junit.Assert.*;
 
 public class CheckoutPage extends BaseMethods{
@@ -43,27 +46,48 @@ public class CheckoutPage extends BaseMethods{
     @FindBy(xpath = "//*[contains(@class,'alert-form')]")
     public WebElement error;
 
-    public CheckoutPage(WebDriver driver){
-        PageFactory.initElements(driver, this);
-        this.driver=driver;
+    public CheckoutPage(){
+        PageFactory.initElements(BaseSteps.getDriver(), this);
+        this.driver=BaseSteps.getDriver();
     }
 
     public void fillField(String key, String value){
         switch (key){
             case "Фамилия застрахованного": fillField(lastNameInsured, value); break;
             case "Имя застрахованного": fillField(firstNameInsured, value); break;
-            case "Дата рождения застрахованного": fillField(birthDateInsured, value); break;
+            case "Дата рождения застрахованного": fillField(birthDateInsured, value); changeOfFocus(); break;
             case "Фамилия": fillField(lastName, value); break;
             case "Имя": fillField(firstName, value); break;
             case "Отчество": fillField(secondName, value); break;
-            case "Дата рождения": fillField(birthDate, value); break;
+            case "Дата рождения": fillField(birthDate, value); changeOfFocus(); break;
             case "Серия паспорта": fillField(docSeries, value); break;
             case "Номер паспорта": fillField(docNumber, value); break;
-            case "Дата выдачи": fillField(docDate, value); break;
+            case "Дата выдачи": fillField(docDate, value); changeOfFocus(); break;
             case "Выдан": fillField(docIssue, value); break;
             default:  throw new AssertionError("Поле '"+key+"' не объявлено на странице");
         }
     }
+
+
+
+    public String getField(String field){
+        switch (field){
+            case "Фамилия застрахованного": return lastNameInsured.getAttribute("value");
+            case "Имя застрахованного": return firstNameInsured.getAttribute("value");
+            case "Дата рождения застрахованного": return birthDateInsured.getAttribute("value");
+            case "Фамилия": return lastName.getAttribute("value");
+            case "Имя": return firstName.getAttribute("value");
+            case "Отчество": return secondName.getAttribute("value");
+            case "Дата рождения": return birthDate.getAttribute("value");
+            case "Серия паспорта": return docSeries.getAttribute("value");
+            case "Номер паспорта": return docNumber.getAttribute("value");
+            case "Дата выдачи": return docDate.getAttribute("value");
+            case "Выдан": return docIssue.getAttribute("value");
+        }
+        throw new AssertionError("Поле не объявлено на странице");
+    }
+
+
 
     public void waitButtonIssueToBeClickable(){
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);

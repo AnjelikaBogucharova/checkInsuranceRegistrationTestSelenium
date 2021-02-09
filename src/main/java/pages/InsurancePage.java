@@ -6,15 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
+import steps.BaseSteps;
 
 public class InsurancePage extends BaseMethods{
 
     @FindBy(xpath = "//*[@data-test-id='PageTeaserDict_header']")
     public WebElement title;
 
-    public InsurancePage(WebDriver driver){
-        PageFactory.initElements(driver,this);
-        this.driver=driver;
+    public InsurancePage(){
+        PageFactory.initElements(BaseSteps.getDriver(),this);
+        this.driver=BaseSteps.getDriver();
     }
 
     public void waitTitle(){
